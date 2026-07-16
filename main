@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fields of Endeavor - Career Services</title>
+<style>
+  :root {
+    --navy: #1A1A2E;
+    --cream: #F5F0E8;
+    --amber: #E8A838;
+    --teal: #4A7C6F;
+    --gray: #6B6B6B;
+    --light-gray: #E8E4DC;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--navy);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--navy);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .nav-brand {
+    font-family: Georgia, serif;
+    color: var(--amber);
+    font-size: 1.1rem;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--navy);
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.88; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 6rem 2rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    color: var(--amber);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline {
+    font-family: Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+  }
+
+  .hero-headline .highlight {
+    color: var(--amber);
+  }
+
+  .hero-sub {
+    color: #B8B4AC;
+    font-size: 1.15rem;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--navy);
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: opacity 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    border: 1.5px solid #4A4A6A;
+    color: #B8B4AC;
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+  /* BULB ACCENT */
+  .bulb-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid #2A2A4E;
+  }
+
+  .bulb-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--amber);
+    flex-shrink: 0;
+  }
+
+  .bulb-text {
+    color: #6B6B8A;
+    font-size: 0.875rem;
+    font-style: italic;
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    color: var(--teal);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: normal;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+    color: var(--navy);
+  }
+
+  p { color: var(--gray); margin-bottom: 1.2rem; }
+
+  /* STORY SECTION */
+  .story {
+    background: var(--white);
+    border-left: 4px solid var(--amber);
+    padding: 2.5rem 3rem;
+    border-radius: 0 8px 8px 0;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .story p { color: #444; }
+
+  .story-attribution {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--light-gray);
+    font-size: 0.875rem;
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  /* DIFFERENTIATOR */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .diff-card {
+    padding: 1.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .diff-card.theirs {
+    background: #F8F6F2;
+    opacity: 0.7;
+  }
+
+  .diff-card.ours {
+    background: var(--navy);
+    border-color: var(--navy);
+  }
+
+  .diff-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .diff-card.theirs .diff-label { color: var(--gray); }
+  .diff-card.ours .diff-label { color: var(--amber); }
+
+  .diff-item {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .diff-card.theirs .diff-item { color: var(--gray); }
+  .diff-card.theirs .diff-item::before { content: "—"; position: absolute; left: 0; color: #BBB; }
+
+  .diff-card.ours .diff-item { color: #D4D0C8; }
+  .diff-card.ours .diff-item::before { content: "✓"; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+
+  /* SERVICES */
+  .services-bg {
+    background: var(--navy);
+    margin: 0;
+    padding: 0;
+  }
+
+  .services-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .services-inner h2 { color: var(--white); }
+  .services-inner .section-label { color: var(--amber); }
+
+  .service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .service-card {
+    background: #22223E;
+    border: 1px solid #2E2E50;
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+
+  .service-card:hover { border-color: var(--amber); }
+
+  .service-card.featured {
+    border-color: var(--amber);
+    background: #1E1E38;
+  }
+
+  .service-tag {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+
+  .service-tag.free { background: var(--teal); color: var(--white); }
+
+  .service-name {
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    font-weight: normal;
+  }
+
+  .service-desc {
+    color: #8888A8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-price {
+    color: var(--amber);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .service-price.free-price { color: var(--teal); }
+
+  /* FREE CHECK CTA */
+  .cta-section {
+    text-align: center;
+    padding: 6rem 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .cta-section .section-label { justify-content: center; display: flex; }
+
+  .cta-section h2 { margin-bottom: 1rem; }
+
+  .cta-section p {
+    color: var(--gray);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+
+  .cta-email {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-email:hover { opacity: 0.85; }
+
+  .cta-fine {
+    display: block;
+    font-size: 0.8rem;
+    color: #AAA;
+    margin-top: 0.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: #4A4A6A;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    line-height: 1.8;
+  }
+
+  footer a { color: #6A6A8A; text-decoration: none; }
+  footer a:hover { color: var(--amber); }
+
+  .footer-brand {
+    font-family: Georgia, serif;
+    color: var(--amber);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--light-gray);
+    margin: 0 2rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .diff-grid { grid-template-columns: 1fr; }
+    .hero { padding: 5rem 1.25rem 3rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .story { padding: 1.75rem; }
+    .services-inner { padding: 3.5rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Fields of Endeavor</span>
+  <a href="mailto:charlie@fieldsofendeavor.com" class="nav-cta">Free Resume Check</a>
+</nav>
+
+<!-- HERO -->
+<div style="background: var(--navy);">
+  <div class="hero">
+    <p class="hero-eyebrow">Career Services - One Lightbulb at a Time</p>
+    <h1 class="hero-headline">
+      One resume<br>
+      for 50 jobs is why<br>
+      you're not getting<br>
+      <span class="highlight">callbacks.</span>
+    </h1>
+    <p class="hero-sub">
+      I build a new resume for every job you apply to -- tailored to that specific posting, with a matching cover letter. Not a rewrite. A custom document that speaks directly to what that employer is actually looking for.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:charlie@fieldsofendeavor.com?subject=Free Resume Check" class="btn-primary">Get Your Free Resume Check</a>
+      <a href="#services" class="btn-ghost">See How It Works</a>
+    </div>
+
+    <div class="bulb-row">
+      <svg class="bulb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 21h6M12 3a6 6 0 016 6c0 2.22-1.2 4.16-3 5.2V17H9v-2.8A6 6 0 0112 3z"/>
+        <path d="M9 17h6"/>
+      </svg>
+      <span class="bulb-text">Same job. Different technology. One lightbulb at a time.</span>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section>
+  <p class="section-label">How This Started</p>
+  <h2>I was that person blasting the same resume at 50 jobs.</h2>
+
+  <div class="story">
+    <p>
+      A while back I was putting out a lot of resumes that weren't getting much traction. A colleague of mine -- Diane -- took one look at what I was doing and showed me some of the mistakes I'd been making. Not obvious ones. Subtle ones. The kind that make a recruiter click away in three seconds.
+    </p>
+    <p>
+      With her help I got more selective, started getting real responses -- not just the polite "we've decided to go another direction" form letters. I even took down my Open to Work banner. Not because I stopped looking, but because I didn't feel like I had to take the first offer anymore.
+    </p>
+    <p>
+      The first thing that changed wasn't the resume. It was the LinkedIn profile. Turns out you don't need a recruiter reading your entire career history back to the days before half your skills had names. You need what's relevant. Clean. Focused. Easy to skim in thirty seconds and still know exactly what you bring to the table.
+    </p>
+    <p>
+      Between the LinkedIn cleanup and the individually tailored resumes and cover letters -- things started to move. Diane is now offering that same approach to anyone who's ready to stop guessing and start getting callbacks.
+    </p>
+    <div class="story-attribution">
+      -- Charles Fields, founder, Fields of Endeavor
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DIFFERENTIATOR -->
+<section id="services">
+  <p class="section-label">What Makes This Different</p>
+  <h2>Everyone offers a resume rewrite.<br>Nobody else does this.</h2>
+
+  <div class="diff-grid">
+    <div class="diff-card theirs">
+      <div class="diff-label">Everyone Else</div>
+      <div class="diff-item">One generic document</div>
+      <div class="diff-item">Same resume, 50 applications</div>
+      <div class="diff-item">No cover letter, or a generic one</div>
+      <div class="diff-item">LinkedIn? On your own</div>
+      <div class="diff-item">"Free check" that says nothing real</div>
+    </div>
+    <div class="diff-card ours">
+      <div class="diff-label">Fields of Endeavor</div>
+      <div class="diff-item">Resume tailored to each specific posting</div>
+      <div class="diff-item">Matching cover letter every time</div>
+      <div class="diff-item">LinkedIn rebuilt from the ground up</div>
+      <div class="diff-item">Additional variants at a discount</div>
+      <div class="diff-item">Free check that gives you one real, specific thing to fix today</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="services-bg">
+  <div class="services-inner">
+    <p class="section-label">Services and Pricing</p>
+    <h2>Start free. Invest when you're ready.</h2>
+
+    <div class="service-cards">
+
+      <div class="service-card">
+        <span class="service-tag free">Free</span>
+        <div class="service-name">Resume Check</div>
+        <div class="service-desc">
+          Send me your resume and the job posting you're targeting. I'll come back with one specific, real observation about what's costing you interviews. No pitch. No fluff. Just a straight answer.
+        </div>
+        <div class="service-price free-price">No cost, no obligation</div>
+      </div>
+
+      <div class="service-card featured">
+        <span class="service-tag">Most Popular</span>
+        <div class="service-name">Core Package</div>
+        <div class="service-desc">
+          Full LinkedIn profile rebuild, plus a resume and cover letter tailored to your number-one target role. This is the complete overhaul -- everything a recruiter sees, done right.
+        </div>
+        <div class="service-price">$497 - $697</div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-tag">Add-On</span>
+        <div class="service-name">Additional Targets</div>
+        <div class="service-desc">
+          Already a client? Each additional tailored resume and cover letter pair for a new employer costs less -- because we already have your story. You just send the new job posting.
+        </div>
+        <div class="service-price">$125 - $150 each</div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-tag">Bundle</span>
+        <div class="service-name">Three-Target Bundle</div>
+        <div class="service-desc">
+          Three fully tailored resume and cover letter pairs for three different employers. Maximizes your shots on goal without sending the same document to everyone.
+        </div>
+        <div class="service-price">$997</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <p class="section-label">Ready to Start</p>
+  <h2>Get your free resume check.</h2>
+  <p>
+    Send your resume and one job posting you're targeting. I'll tell you one specific thing that's costing you interviews -- real feedback, not a sales pitch.
+  </p>
+  <a href="mailto:charlie@fieldsofendeavor.com?subject=Free Resume Check&body=Hi, I'd like a free resume check. I've attached my resume and the job posting I'm targeting." class="cta-email">
+    charlie@fieldsofendeavor.com
+  </a>
+  <span class="cta-fine">No forms. No funnels. Just an email.</span>
+
+  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--light-gray);">
+    <p style="font-size: 0.85rem; color: #AAA; max-width: 480px; margin: 0 auto;">
+      Want your own professional website with free hosting for life? We build those too.
+      <a href="mailto:charlie@fieldsofendeavor.com?subject=Website Inquiry" style="color: var(--teal); text-decoration: none;">Ask us how.</a>
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Fields of Endeavor</span>
+  <div>Career Services &nbsp;|&nbsp; <a href="mailto:charlie@fieldsofendeavor.com">charlie@fieldsofendeavor.com</a></div>
+  <div style="margin-top: 0.75rem;">
+    Website hosting provided through GitHub Pages.<br>
+    Free hosting subject to availability of GitHub's free hosting service.
+  </div>
+  <div style="margin-top: 0.75rem;">
+    &copy; 2026 Fields of Endeavor &nbsp;|&nbsp; Lakeland Village, CA
+  </div>
+</footer>
+
+</body>
+</html>
