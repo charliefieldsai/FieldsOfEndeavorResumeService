@@ -326,9 +326,38 @@
     color: var(--amber);
     font-size: 1.1rem;
     font-weight: 700;
+    margin-bottom: 1rem;
   }
 
   .service-price.free-price { color: var(--teal); }
+
+  .service-cta {
+    display: inline-block;
+    background: transparent;
+    border: 1.5px solid var(--amber);
+    color: var(--amber);
+    padding: 0.5rem 1.1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .service-cta:hover {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  .service-card.featured .service-cta {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  .service-card.featured .service-cta:hover {
+    opacity: 0.85;
+    background: var(--amber);
+  }
 
   /* FREE CHECK CTA */
   .cta-section {
@@ -368,6 +397,125 @@
     font-size: 0.8rem;
     color: #AAA;
     margin-top: 0.5rem;
+  }
+
+  /* WEBSITE PROMO */
+  .website-promo {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 2rem 2.5rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .website-promo-headline {
+    color: var(--white);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-weight: 600;
+    max-width: 560px;
+    margin: 0 auto 1.25rem;
+  }
+
+  .website-promo-link {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--navy);
+    padding: 0.7rem 1.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+  }
+
+  .website-promo-link:hover { opacity: 0.85; }
+
+  .website-promo-fine {
+    color: #8888A8;
+    font-size: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 600px) {
+    .website-promo { padding: 1.5rem 1.25rem; }
+    .website-promo-headline { font-size: 1.1rem; }
+  }
+
+  /* FORM */
+  .foe-form {
+    text-align: left;
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-field, .form-field-full {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-row .form-field { margin-bottom: 0; }
+
+  .foe-form label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  .optional-tag {
+    font-weight: 400;
+    color: var(--gray);
+    font-size: 0.8rem;
+  }
+
+  .foe-form input,
+  .foe-form textarea,
+  .foe-form select {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 4px;
+    background: var(--white);
+    color: var(--navy);
+    resize: vertical;
+  }
+
+  .foe-form input:focus,
+  .foe-form textarea:focus,
+  .foe-form select:focus {
+    outline: none;
+    border-color: var(--amber);
+  }
+
+  .form-submit {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 0.5rem;
+  }
+
+  .form-status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+  }
+
+  .form-status-success { color: var(--teal); font-weight: 600; }
+  .form-status-error { color: #B33A3A; font-weight: 600; }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; gap: 0; }
   }
 
   /* FOOTER */
@@ -417,7 +565,7 @@
 <!-- NAV -->
 <nav>
   <span class="nav-brand">Fields of Endeavor</span>
-  <a href="mailto:charlie@fieldsofendeavor.com" class="nav-cta">Free Resume Check</a>
+  <a href="#contact-form" class="nav-cta">Free Resume Check</a>
 </nav>
 
 <!-- HERO -->
@@ -431,10 +579,10 @@
       <span class="highlight">callbacks.</span>
     </h1>
     <p class="hero-sub">
-      I build a new resume for every job you apply to -- tailored to that specific posting, with a matching cover letter. Not a rewrite. A custom document that speaks directly to what that employer is actually looking for.
+      I build a new resume for every job you apply to - tailored to that specific posting, with a matching cover letter. Not a rewrite. A custom document that speaks directly to what that employer is actually looking for.
     </p>
     <div class="hero-actions">
-      <a href="mailto:charlie@fieldsofendeavor.com?subject=Free Resume Check" class="btn-primary">Get Your Free Resume Check</a>
+      <a href="#contact-form" class="btn-primary">Get Your Free Resume Check</a>
       <a href="#services" class="btn-ghost">See How It Works</a>
     </div>
 
@@ -455,22 +603,22 @@
 
   <div class="story">
     <p>
-      Not fifty jobs in a week -- let's be honest, nobody's doing that -- but enough applications with the same generic resume that I stopped getting responses. Just silence, or the occasional polite "we've decided to go another direction."
+      Not fifty jobs in a week - let's be honest, nobody's doing that - but enough applications with the same generic resume that I stopped getting responses. Just silence, or the occasional polite "we've decided to go another direction."
     </p>
     <p>
       I've spent twenty-plus years teaching people how to use new systems, new software, new processes. Change management is literally what I did for a living. So at some point I had to laugh at myself: here I was, the guy who helps organizations adopt new ways of doing things, completely resistant to changing my own approach to a job search.
     </p>
     <p>
-      Once I actually applied what I knew -- stopped sending one generic document everywhere, started tailoring each resume and cover letter to the specific job -- the responses changed. Not because of a trick. Because a hiring manager can tell in about three seconds whether you actually read their posting or just changed the company name at the top.
+      Once I actually applied what I knew - stopped sending one generic document everywhere, started tailoring each resume and cover letter to the specific job - the responses changed. Not because of a trick. Because a hiring manager can tell in about three seconds whether you actually read their posting or just changed the company name at the top.
     </p>
     <p>
-      The other thing that changed was my LinkedIn profile. Turns out a recruiter doesn't need your entire career history going back to jobs that don't exist anymore. They need what's relevant, easy to skim in thirty seconds, and clear about exactly what you bring to the table. I even took down my Open to Work banner -- not because I stopped looking, but because I didn't feel like I had to take the first offer anymore.
+      The other thing that changed was my LinkedIn profile. Turns out a recruiter doesn't need your entire career history going back to jobs that don't exist anymore. They need what's relevant, easy to skim in thirty seconds, and clear about exactly what you bring to the table. I even took down my Open to Work banner - not because I stopped looking, but because I didn't feel like I had to take the first offer anymore.
     </p>
     <p>
       I built Fields of Endeavor to do for other job seekers what I finally did for myself.
     </p>
     <div class="story-attribution">
-      -- Charles Fields, founder, Fields of Endeavor
+      - Charles Fields, founder, Fields of Endeavor
     </div>
   </div>
 </section>
@@ -514,27 +662,40 @@
         <span class="service-tag free">Free</span>
         <div class="service-name">Resume Check</div>
         <div class="service-desc">
-          Send me your resume and the job posting you're targeting. I'll come back with one specific, real observation about what's costing you interviews. No pitch. No fluff. Just a straight answer.
+          Send me your resume and the job posting you're targeting. I'll come back with one specific, real observation about what's costing you interviews. No pitch. Just a straight answer.
         </div>
         <div class="service-price free-price">No cost, no obligation</div>
+        <a href="#contact-form" class="service-cta" data-service="Free Resume Check">Get Started</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-tag">Entry</span>
+        <div class="service-name">Resume Rewrite</div>
+        <div class="service-desc">
+          A single resume and matching cover letter, professionally rewritten and tailored to your number-one target role. No LinkedIn work included - just the documents that get you the interview.
+        </div>
+        <div class="service-price">$197</div>
+        <a href="#contact-form" class="service-cta" data-service="Resume Rewrite ($197)">Get Started</a>
       </div>
 
       <div class="service-card featured">
         <span class="service-tag">Most Popular</span>
         <div class="service-name">Core Package</div>
         <div class="service-desc">
-          Full LinkedIn profile rebuild, plus a resume and cover letter tailored to your number-one target role. This is the complete overhaul -- everything a recruiter sees, done right.
+          Full LinkedIn profile rebuild, plus a resume and cover letter tailored to your number-one target role. This is the complete overhaul - everything a recruiter sees, done right.
         </div>
         <div class="service-price">$497 - $697</div>
+        <a href="#contact-form" class="service-cta" data-service="Core Package ($497-697)">Get Started</a>
       </div>
 
       <div class="service-card">
         <span class="service-tag">Add-On</span>
         <div class="service-name">Additional Targets</div>
         <div class="service-desc">
-          Already a client? Each additional tailored resume and cover letter pair for a new employer costs less -- because we already have your story. You just send the new job posting.
+          Already a client? Each additional tailored resume and cover letter pair for a new employer costs less - because we already have your story. You just send the new job posting.
         </div>
         <div class="service-price">$125 - $150 each</div>
+        <a href="#contact-form" class="service-cta" data-service="Additional Target ($125-150)">Get Started</a>
       </div>
 
       <div class="service-card">
@@ -544,40 +705,138 @@
           Three fully tailored resume and cover letter pairs for three different employers. Maximizes your shots on goal without sending the same document to everyone.
         </div>
         <div class="service-price">$997</div>
+        <a href="#contact-form" class="service-cta" data-service="Three-Target Bundle ($997)">Get Started</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-tag">Add-On</span>
+        <div class="service-name">Personal Website</div>
+        <div class="service-desc">
+          Skip the LinkedIn URL. We build you a real personal website that showcases your work and experience, hosted at no ongoing cost to you. A stronger first impression than a profile link.
+        </div>
+        <div class="service-price">Starting at $100</div>
+        <a href="#contact-form" class="service-cta" data-service="Personal Website ($100+)">Get Started</a>
       </div>
 
     </div>
   </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-section">
+<!-- CTA / FORM -->
+<div class="cta-section" id="contact-form">
   <p class="section-label">Ready to Start</p>
   <h2>Get your free resume check.</h2>
   <p>
-    Send your resume and one job posting you're targeting. I'll tell you one specific thing that's costing you interviews -- real feedback, not a sales pitch.
+    Paste your resume and the job posting you're targeting below. I'll tell you one specific thing that's costing you interviews - real feedback, not a sales pitch.
   </p>
-  <a href="mailto:charlie@fieldsofendeavor.com?subject=Free Resume Check&body=Hi, I'd like a free resume check. I've attached my resume and the job posting I'm targeting." class="cta-email">
-    charlie@fieldsofendeavor.com
-  </a>
-  <span class="cta-fine">No forms. No funnels. Just an email.</span>
 
-  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--light-gray);">
-    <p style="font-size: 0.85rem; color: #AAA; max-width: 480px; margin: 0 auto;">
-      Want your own professional website with free hosting for life? We build those too.
-      <a href="mailto:charlie@fieldsofendeavor.com?subject=Website Inquiry" style="color: var(--teal); text-decoration: none;">Ask us how.</a>
-    </p>
+  <form id="resume-check-form" action="https://formspree.io/f/mjgnlqjw" method="POST" class="foe-form">
+    <div class="form-field-full">
+      <label for="f-service">Which service are you interested in?</label>
+      <select id="f-service" name="service_interested">
+        <option value="Free Resume Check">Free Resume Check (start here if you're not sure)</option>
+        <option value="Resume Rewrite ($197)">Resume Rewrite - $197</option>
+        <option value="Core Package ($497-697)">Core Package (Resume + LinkedIn + Cover Letter) - $497-697</option>
+        <option value="Additional Target ($125-150)">Additional Target - $125-150</option>
+        <option value="Three-Target Bundle ($997)">Three-Target Bundle - $997</option>
+        <option value="Personal Website ($100+)">Personal Website - Starting at $100</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="f-name">Name</label>
+        <input type="text" id="f-name" name="name" required>
+      </div>
+      <div class="form-field">
+        <label for="f-email">Email</label>
+        <input type="email" id="f-email" name="email" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="f-phone">Phone <span class="optional-tag">(optional)</span></label>
+        <input type="tel" id="f-phone" name="phone">
+      </div>
+      <div class="form-field">
+        <label for="f-target">Target Role / Company</label>
+        <input type="text" id="f-target" name="target_role" placeholder="e.g. Customer Success Manager at Acme Co.">
+      </div>
+    </div>
+
+    <div class="form-field-full">
+      <label for="f-resume">Paste your current resume</label>
+      <textarea id="f-resume" name="resume_text" rows="10" placeholder="Paste the full text of your resume here..." required></textarea>
+    </div>
+
+    <div class="form-field-full">
+      <label for="f-posting">Paste the job posting you're targeting <span class="optional-tag">(optional, but helps a lot)</span></label>
+      <textarea id="f-posting" name="job_posting_text" rows="8" placeholder="Paste the job description here..."></textarea>
+    </div>
+
+    <input type="hidden" name="_subject" value="New Fields of Endeavor Request">
+
+    <button type="submit" class="btn-primary form-submit">Send My Request</button>
+    <div id="form-status" class="form-status"></div>
+  </form>
+
+  <span class="cta-fine">Prefer email? Write directly to <a href="mailto:charlie@fieldsofendeavor.com" style="color: var(--teal);">charlie@fieldsofendeavor.com</a></span>
+
+  <div class="website-promo">
+    <p class="website-promo-headline">Need a professional website too? When you hire us to build it, we cover the hosting. Free.<sup>**</sup></p>
+    <a href="mailto:charlie@fieldsofendeavor.com?subject=Website Inquiry" class="website-promo-link">Ask us how</a>
+    <p class="website-promo-fine"><sup>**</sup>Free hosting subject to availability of GitHub's free hosting service.</p>
   </div>
 </div>
+
+<script>
+  const foeForm = document.getElementById('resume-check-form');
+  const foeServiceSelect = document.getElementById('f-service');
+
+  document.querySelectorAll('.service-cta').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const service = btn.getAttribute('data-service');
+      if (service && foeServiceSelect) {
+        for (let opt of foeServiceSelect.options) {
+          if (opt.value === service) {
+            foeServiceSelect.value = service;
+            break;
+          }
+        }
+      }
+    });
+  });
+  const foeStatus = document.getElementById('form-status');
+  foeForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    foeStatus.textContent = 'Sending...';
+    foeStatus.className = 'form-status';
+    try {
+      const response = await fetch(foeForm.action, {
+        method: 'POST',
+        body: new FormData(foeForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        foeForm.reset();
+        foeStatus.textContent = "Got it! I'll get back to you with your free resume check soon.";
+        foeStatus.className = 'form-status form-status-success';
+      } else {
+        foeStatus.textContent = "Something went wrong. Please email charlie@fieldsofendeavor.com directly.";
+        foeStatus.className = 'form-status form-status-error';
+      }
+    } catch (error) {
+      foeStatus.textContent = "Something went wrong. Please email charlie@fieldsofendeavor.com directly.";
+      foeStatus.className = 'form-status form-status-error';
+    }
+  });
+</script>
 
 <!-- FOOTER -->
 <footer>
   <span class="footer-brand">Fields of Endeavor</span>
   <div>Career Services &nbsp;|&nbsp; <a href="mailto:charlie@fieldsofendeavor.com">charlie@fieldsofendeavor.com</a></div>
-  <div style="margin-top: 0.75rem;">
-    Website hosting provided through GitHub Pages.<br>
-    Free hosting subject to availability of GitHub's free hosting service.
-  </div>
   <div style="margin-top: 0.75rem;">
     &copy; 2026 Fields of Endeavor &nbsp;|&nbsp; Lakeland Village, CA
   </div>
