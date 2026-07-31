@@ -710,12 +710,12 @@
 
       <div class="service-card">
         <span class="service-tag">Add-On</span>
-        <div class="service-name">Personal Website</div>
+        <div class="service-name">Website Quote</div>
         <div class="service-desc">
-          Skip the LinkedIn URL. We build you a real personal website that showcases your work and experience, hosted at no ongoing cost to you. A stronger first impression than a profile link.
+          Need a website and don't want a monthly hosting bill? We build sites for individuals and small businesses alike, hosted at no ongoing cost to you.
         </div>
         <div class="service-price">Starting at $100</div>
-        <a href="#contact-form" class="service-cta" data-service="Personal Website ($100+)">Get Started</a>
+        <a href="#contact-form" class="service-cta" data-service="Website Quote ($100+)">Get Started</a>
       </div>
 
     </div>
@@ -733,13 +733,14 @@
   <form id="resume-check-form" action="https://formspree.io/f/mjgnlqjw" method="POST" class="foe-form">
     <div class="form-field-full">
       <label for="f-service">Which service are you interested in?</label>
-      <select id="f-service" name="service_interested">
-        <option value="Free Resume Check">Free Resume Check (start here if you're not sure)</option>
+      <select id="f-service" name="service_interested" required>
+        <option value="" disabled selected>Click here to start</option>
+        <option value="Free Resume Check">Free Resume Check</option>
         <option value="Resume Rewrite ($197)">Resume Rewrite - $197</option>
         <option value="Core Package ($497-697)">Core Package (Resume + LinkedIn + Cover Letter) - $497-697</option>
         <option value="Additional Target ($125-150)">Additional Target - $125-150</option>
         <option value="Three-Target Bundle ($997)">Three-Target Bundle - $997</option>
-        <option value="Personal Website ($100+)">Personal Website - Starting at $100</option>
+        <option value="Website Quote ($100+)">Website Quote - Starting at $100</option>
       </select>
     </div>
 
@@ -766,12 +767,12 @@
     </div>
 
     <div class="form-field-full">
-      <label for="f-resume">Paste your current resume</label>
+      <label for="f-resume" id="f-resume-label">Paste your current resume</label>
       <textarea id="f-resume" name="resume_text" rows="10" placeholder="Paste the full text of your resume here..." required></textarea>
     </div>
 
     <div class="form-field-full">
-      <label for="f-posting">Paste the job posting you're targeting <span class="optional-tag">(optional, but helps a lot)</span></label>
+      <label for="f-posting" id="f-posting-label">Paste the job posting you're targeting <span class="optional-tag">(optional, but helps a lot)</span></label>
       <textarea id="f-posting" name="job_posting_text" rows="8" placeholder="Paste the job description here..."></textarea>
     </div>
 
@@ -785,7 +786,7 @@
 
   <div class="website-promo">
     <p class="website-promo-headline">Need a professional website too? When you hire us to build it, we cover the hosting. Free.<sup>**</sup></p>
-    <a href="mailto:charlie@fieldsofendeavor.com?subject=Website Inquiry" class="website-promo-link">Ask us how</a>
+    <a href="#contact-form" class="website-promo-link service-cta" data-service="Website Quote ($100+)">Ask us how</a>
     <p class="website-promo-fine"><sup>**</sup>Free hosting subject to availability of GitHub's free hosting service.</p>
   </div>
 </div>
@@ -793,6 +794,33 @@
 <script>
   const foeForm = document.getElementById('resume-check-form');
   const foeServiceSelect = document.getElementById('f-service');
+  const foeResumeLabel = document.getElementById('f-resume-label');
+  const foeResumeField = document.getElementById('f-resume');
+  const foePostingLabel = document.getElementById('f-posting-label');
+  const foePostingField = document.getElementById('f-posting');
+
+  const WEBSITE_VALUE = 'Website Quote ($100+)';
+
+  const defaultResumeLabel = foeResumeLabel.innerHTML;
+  const defaultResumePlaceholder = foeResumeField.getAttribute('placeholder');
+  const defaultPostingLabel = foePostingLabel.innerHTML;
+  const defaultPostingPlaceholder = foePostingField.getAttribute('placeholder');
+
+  function updateFormLabels() {
+    if (foeServiceSelect.value === WEBSITE_VALUE) {
+      foeResumeLabel.innerHTML = 'Let us know what you have in mind for a quote';
+      foeResumeField.setAttribute('placeholder', 'Tell us about your project, or paste a link to your current website if you have one...');
+      foePostingLabel.innerHTML = 'Anything else we should know? <span class="optional-tag">(optional)</span>';
+      foePostingField.setAttribute('placeholder', 'Timeline, examples of sites you like, must-have features, etc...');
+    } else {
+      foeResumeLabel.innerHTML = defaultResumeLabel;
+      foeResumeField.setAttribute('placeholder', defaultResumePlaceholder);
+      foePostingLabel.innerHTML = defaultPostingLabel;
+      foePostingField.setAttribute('placeholder', defaultPostingPlaceholder);
+    }
+  }
+
+  foeServiceSelect.addEventListener('change', updateFormLabels);
 
   document.querySelectorAll('.service-cta').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -804,6 +832,7 @@
             break;
           }
         }
+        updateFormLabels();
       }
     });
   });
