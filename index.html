@@ -837,10 +837,29 @@
     });
   });
   const foeStatus = document.getElementById('form-status');
+
+  // Map each paid service to its live Stripe payment link.
+  // Website Quote intentionally has no link - it requires a custom quote first.
+  const STRIPE_LINKS = {
+    'Resume Rewrite ($197)': 'https://buy.stripe.com/8x29AMciQg5Z85H17BbAs00',
+    'Core Package ($497-697)': 'https://buy.stripe.com/fZucMYaaIcTNadPaIbbAs01',
+    'Additional Target ($125-150)': 'https://buy.stripe.com/00weV60A8f1VadPbMfbAs02',
+    'Three-Target Bundle ($997)': 'https://buy.stripe.com/fZubIUeqYdXR99L9E7bAs03'
+  };
+
   foeForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    const selectedService = foeServiceSelect.value;
+    const selectedServiceLabel = foeServiceSelect.options[foeServiceSelect.selectedIndex]
+      ? foeServiceSelect.options[foeServiceSelect.selectedIndex].text
+      : selectedService;
+
     foeStatus.textContent = 'Sending...';
     foeStatus.className = 'form-status';
+
+    const existingPayBtn = document.getElementById('foe-pay-btn');
+    if (existingPayBtn) existingPayBtn.remove();
+
     try {
       const response = await fetch(foeForm.action, {
         method: 'POST',
@@ -849,8 +868,32 @@
       });
       if (response.ok) {
         foeForm.reset();
-        foeStatus.textContent = "Got it! I'll get back to you with your free resume check soon.";
-        foeStatus.className = 'form-status form-status-success';
+        updateFormLabels();
+
+        const payLink = STRIPE_LINKS[selectedService];
+        if (payLink) {
+          foeStatus.innerHTML = "Got it! I have your details. Next step, complete your payment below and I'll get started.";
+          foeStatus.className = 'form-status form-status-success';
+
+          const payBtn = document.createElement('a');
+          payBtn.id = 'foe-pay-btn';
+          payBtn.href = payLink;
+          payBtn.target = '_blank';
+          payBtn.rel = 'noopener';
+          payBtn.className = 'btn-primary form-submit';
+          payBtn.style.display = 'block';
+          payBtn.style.textAlign = 'center';
+          payBtn.style.marginTop = '1rem';
+          payBtn.style.textDecoration = 'none';
+          payBtn.textContent = 'Complete Payment - ' + selectedServiceLabel;
+          foeStatus.insertAdjacentElement('afterend', payBtn);
+        } else if (selectedService === 'Free Resume Check') {
+          foeStatus.textContent = "Got it! I'll get back to you with your free resume check soon.";
+          foeStatus.className = 'form-status form-status-success';
+        } else {
+          foeStatus.textContent = "Got it! I'll follow up by email with payment details shortly.";
+          foeStatus.className = 'form-status form-status-success';
+        }
       } else {
         foeStatus.textContent = "Something went wrong. Please email charlie@fieldsofendeavor.com directly.";
         foeStatus.className = 'form-status form-status-error';
