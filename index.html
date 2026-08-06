@@ -60,6 +60,25 @@
 
   .nav-cta:hover { opacity: 0.88; }
 
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-link {
+    border: 1.5px solid var(--teal);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-link:hover { background: var(--teal); color: var(--white); }
+
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -275,6 +294,15 @@
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.25rem;
     margin-top: 2.5rem;
+  }
+
+  .custom-scope-note {
+    margin-top: 1.75rem;
+    text-align: center;
+    color: var(--cream);
+    opacity: 0.85;
+    font-size: 0.95rem;
+    font-style: italic;
   }
 
   .service-card {
@@ -565,7 +593,10 @@
 <!-- NAV -->
 <nav>
   <span class="nav-brand">Fields of Endeavor</span>
-  <a href="#contact-form" class="nav-cta">Free Resume Check</a>
+  <div class="nav-actions">
+    <a href="#our-story" class="nav-link">Our Story</a>
+    <a href="#contact-form" class="nav-cta">Free Resume Check</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -583,7 +614,7 @@
     </p>
     <div class="hero-actions">
       <a href="#contact-form" class="btn-primary">Get Your Free Resume Check</a>
-      <a href="#services" class="btn-ghost">See How It Works</a>
+      <a href="#services" class="btn-ghost">See All Our Plans</a>
     </div>
 
     <div class="bulb-row">
@@ -597,7 +628,7 @@
 </div>
 
 <!-- STORY -->
-<section>
+<section id="our-story">
   <p class="section-label">How This Started</p>
   <h2>I was the guy blasting the same resume at every job I could find.</h2>
 
@@ -684,8 +715,8 @@
         <div class="service-desc">
           Full LinkedIn profile rebuild, plus a resume and cover letter tailored to your number-one target role. This is the complete overhaul - everything a recruiter sees, done right.
         </div>
-        <div class="service-price">$497 - $697</div>
-        <a href="#contact-form" class="service-cta" data-service="Core Package ($497-697)">Get Started</a>
+        <div class="service-price">$497</div>
+        <a href="#contact-form" class="service-cta" data-service="Core Package ($497)">Get Started</a>
       </div>
 
       <div class="service-card">
@@ -694,8 +725,8 @@
         <div class="service-desc">
           Already a client? Each additional tailored resume and cover letter pair for a new employer costs less - because we already have your story. You just send the new job posting.
         </div>
-        <div class="service-price">$125 - $150 each</div>
-        <a href="#contact-form" class="service-cta" data-service="Additional Target ($125-150)">Get Started</a>
+        <div class="service-price">$125 each</div>
+        <a href="#contact-form" class="service-cta" data-service="Additional Target ($125)">Get Started</a>
       </div>
 
       <div class="service-card">
@@ -708,24 +739,18 @@
         <a href="#contact-form" class="service-cta" data-service="Three-Target Bundle ($997)">Get Started</a>
       </div>
 
-      <div class="service-card">
-        <span class="service-tag">Add-On</span>
-        <div class="service-name">Website Quote</div>
-        <div class="service-desc">
-          Need a website and don't want a monthly hosting bill? We build sites for individuals and small businesses alike, hosted at no ongoing cost to you.
-        </div>
-        <div class="service-price">Starting at $100</div>
-        <a href="#contact-form" class="service-cta" data-service="Website Quote ($100+)">Get Started</a>
-      </div>
-
     </div>
+
+    <p class="custom-scope-note">
+      Got a resume that's 12 pages and 30 years deep? Start free - we'll scope it honestly before you spend a dime.
+    </p>
   </div>
 </div>
 
 <!-- CTA / FORM -->
 <div class="cta-section" id="contact-form">
   <p class="section-label">Ready to Start</p>
-  <h2>Get your free resume check.</h2>
+  <h2>Let's get started.</h2>
   <p>
     Paste your resume and the job posting you're targeting below. I'll tell you one specific thing that's costing you interviews - real feedback, not a sales pitch.
   </p>
@@ -737,10 +762,9 @@
         <option value="" disabled selected>Click here to start</option>
         <option value="Free Resume Check">Free Resume Check</option>
         <option value="Resume Rewrite ($197)">Resume Rewrite - $197</option>
-        <option value="Core Package ($497-697)">Core Package (Resume + LinkedIn + Cover Letter) - $497-697</option>
-        <option value="Additional Target ($125-150)">Additional Target - $125-150</option>
+        <option value="Core Package ($497)">Core Package (Resume + LinkedIn + Cover Letter) - $497</option>
+        <option value="Additional Target ($125)">Additional Target - $125 each</option>
         <option value="Three-Target Bundle ($997)">Three-Target Bundle - $997</option>
-        <option value="Website Quote ($100+)">Website Quote - Starting at $100</option>
       </select>
     </div>
 
@@ -783,12 +807,6 @@
   </form>
 
   <span class="cta-fine">Prefer email? Write directly to <a href="mailto:charlie@fieldsofendeavor.com" style="color: var(--teal);">charlie@fieldsofendeavor.com</a></span>
-
-  <div class="website-promo">
-    <p class="website-promo-headline">Need a professional website too? When you hire us to build it, we cover the hosting. Free.<sup>**</sup></p>
-    <a href="#contact-form" class="website-promo-link service-cta" data-service="Website Quote ($100+)">Ask us how</a>
-    <p class="website-promo-fine"><sup>**</sup>Free hosting subject to availability of GitHub's free hosting service.</p>
-  </div>
 </div>
 
 <script>
@@ -799,25 +817,16 @@
   const foePostingLabel = document.getElementById('f-posting-label');
   const foePostingField = document.getElementById('f-posting');
 
-  const WEBSITE_VALUE = 'Website Quote ($100+)';
-
   const defaultResumeLabel = foeResumeLabel.innerHTML;
   const defaultResumePlaceholder = foeResumeField.getAttribute('placeholder');
   const defaultPostingLabel = foePostingLabel.innerHTML;
   const defaultPostingPlaceholder = foePostingField.getAttribute('placeholder');
 
   function updateFormLabels() {
-    if (foeServiceSelect.value === WEBSITE_VALUE) {
-      foeResumeLabel.innerHTML = 'Let us know what you have in mind for a quote';
-      foeResumeField.setAttribute('placeholder', 'Tell us about your project, or paste a link to your current website if you have one...');
-      foePostingLabel.innerHTML = 'Anything else we should know? <span class="optional-tag">(optional)</span>';
-      foePostingField.setAttribute('placeholder', 'Timeline, examples of sites you like, must-have features, etc...');
-    } else {
-      foeResumeLabel.innerHTML = defaultResumeLabel;
-      foeResumeField.setAttribute('placeholder', defaultResumePlaceholder);
-      foePostingLabel.innerHTML = defaultPostingLabel;
-      foePostingField.setAttribute('placeholder', defaultPostingPlaceholder);
-    }
+    foeResumeLabel.innerHTML = defaultResumeLabel;
+    foeResumeField.setAttribute('placeholder', defaultResumePlaceholder);
+    foePostingLabel.innerHTML = defaultPostingLabel;
+    foePostingField.setAttribute('placeholder', defaultPostingPlaceholder);
   }
 
   foeServiceSelect.addEventListener('change', updateFormLabels);
@@ -839,11 +848,10 @@
   const foeStatus = document.getElementById('form-status');
 
   // Map each paid service to its live Stripe payment link.
-  // Website Quote intentionally has no link - it requires a custom quote first.
   const STRIPE_LINKS = {
     'Resume Rewrite ($197)': 'https://buy.stripe.com/8x29AMciQg5Z85H17BbAs00',
-    'Core Package ($497-697)': 'https://buy.stripe.com/fZucMYaaIcTNadPaIbbAs01',
-    'Additional Target ($125-150)': 'https://buy.stripe.com/00weV60A8f1VadPbMfbAs02',
+    'Core Package ($497)': 'https://buy.stripe.com/fZucMYaaIcTNadPaIbbAs01',
+    'Additional Target ($125)': 'https://buy.stripe.com/00weV60A8f1VadPbMfbAs02',
     'Three-Target Bundle ($997)': 'https://buy.stripe.com/fZubIUeqYdXR99L9E7bAs03'
   };
 
